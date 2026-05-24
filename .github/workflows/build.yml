@@ -1,0 +1,227 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+  
+permissions:
+  contents: write
+
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install required packages
+      run: |
+        sudo apt update
+        sudo apt install -y \
+          build-essential \
+          cmake \
+          qt6-base-dev \
+          pkg-config \
+          zlib1g-dev \
+          libbz2-dev \
+          liblzma-dev \
+          zip \
+          p7zip-full \
+          libgl1-mesa-dev \
+          libxcb-cursor0 \
+          libxcb-xtest0 \
+          libxcb-xinerama0 \
+          libxcb-randr0 \
+          libxcb-xfixes0 \
+          libxcb-shape0 \
+          libxcb-util1 \
+          libxcb-keysyms1 \
+          desktop-file-utils
+
+
+    - name: Install linuxdeploy
+      run: |
+        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+        wget https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
+        chmod +x linuxdeploy-x86_64.AppImage
+        chmod +x linuxdeploy-plugin-appimage-x86_64.AppImage
+        sudo mv linuxdeploy-x86_64.AppImage /usr/local/bin/linuxdeploy
+        sudo mv linuxdeploy-plugin-appimage-x86_64.AppImage /usr/local/bin/linuxdeploy-plugin-appimage
+        
+    - name: Build whisper.cpp
+      run: |
+        git clone https://github.com/ggerganov/whisper.cpp.git
+        cd whisper.cpp
+        mkdir build
+        cd build
+        cmake .. -DBUILD_SHARED_LIBS=ON
+        make -j$(nproc)
+        cd ../../
+        mkdir -p build
+        find whisper.cpp/build -name "libwhisper.so*" -exec cp {} build/libwhisper.so.1 \; 2>/dev/null || echo "No library found"
+        if [ -f whisper.cpp/build/bin/main ]; then
+          cp whisper.cpp/build/bin/main build/whisper
+        fi
+        ls -la build/ | grep whisper || echo "No whisper files in build"
+
+    - name: Create models/ directory
+      run: |
+        echo "This part is necessary as there will be no models included in with the linux build. GitHub releases does not support it."
+        mkdir models
+        
+    - name: Run Linux build
+      run: |
+        chmod +x linux-build.sh
+        ./linux-build.sh
+
+    - name: Clean build output for AppImage
+      run: |
+        rm -rf build/FFGUI++_autogen
+        rm -rf build/CMakeFiles
+        rm -f build/CMakeCache.txt
+        rm -f build/cmake_install.cmake
+
+    - name: List build output
+      run: |
+        echo "Contents of build/:"
+        find build/ -type f | sort
+        
+    - name: Set date variable
+      run: echo "BUILD_DATE=$(date +%Y.%m.%d)" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ env.BUILD_DATE }}
+        release_name: "FFGUI++ Build ${{ env.BUILD_DATE }}"
+        body: |
+          ## FFGUI++ Automated Build
+          
+          This is an automated release of FFGUI++ built from commit ${{ github.sha }}.
+          
+          ### Build Information
+          - **Branch**: ${{ github.ref }}
+          
+          ### What's Included
+          - All binaries and executables necessary to run
+          
+          ### How to Use
+          1. Download the file matching your operating system
+          2. For Ubuntu, run the appimage, for Windows, run the installer
+          3. Whisper models are not included in releases, see [README](README.md) for more info.
+          
+          For issues or feedback, please create an issue.
+        draft: false
+        prerelease: false
+
+    - name: Create AppImage
+      run: |
+        mkdir -p AppDir/usr/bin
+        mkdir -p AppDir/usr/lib
+        mkdir -p AppDir/usr/share/applications
+        mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
+        
+        cp build/FFGUI++ AppDir/usr/bin/ 2>/dev/null || echo "FFGUI++ not found"
+        cp build/main AppDir/usr/bin/ 2>/dev/null || echo "main not found"
+        
+        cp build/libwhisper.so.1 AppDir/usr/lib/ 2>/dev/null || echo "libwhisper.so.1 not found"
+        
+        rm -f AppDir/usr/bin/test-vad
+        rm -f AppDir/usr/bin/*test*
+        rm -f AppDir/usr/bin/whisper-server
+        
+        cp resources/icons/logo.ico AppDir/usr/share/icons/hicolor/256x256/apps/ffgui.png
+        
+        cat > AppDir/usr/share/applications/ffgui.desktop <<EOF
+        [Desktop Entry]
+        Name=FFGUI++
+        Exec=FFGUI++
+        Icon=ffgui
+        Type=Application
+        Categories=Utility;
+        EOF
+        
+        cat > AppDir/AppRun <<'EOF'
+        #!/bin/bash
+        HERE="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+        export LD_LIBRARY_PATH="$HERE/usr/lib:$LD_LIBRARY_PATH"
+        exec "$HERE/usr/bin/FFGUI++" "$@"
+        EOF
+        chmod +x AppDir/AppRun
+        
+        ARCH=x86_64 OUTPUT=FFGUI++-x86_64.AppImage linuxdeploy --appdir AppDir --output appimage
+
+
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: FFGUI++-x86_64.AppImage
+        asset_name: FFGUI++-v${{ env.BUILD_DATE }}-x86_64.AppImage
+        asset_content_type: application/octet-stream
+
+  build-windows:
+    runs-on: windows-latest
+    needs: build-linux
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup MSYS2 with complete MinGW toolchain
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: >-
+          mingw-w64-x86_64-cmake
+          mingw-w64-x86_64-gcc
+          mingw-w64-x86_64-make
+          mingw-w64-x86_64-binutils
+          mingw-w64-x86_64-qt6
+          mingw-w64-x86_64-pkg-config
+
+    - name: Run build in MSYS2 MINGW64
+      shell: msys2 {0}
+      run: |
+        export MSYSTEM=MINGW64
+        echo "Checking tools:"
+        which gcc
+        which g++
+        which mingw32-make
+        which cmake
+        gcc --version
+        cmake --version
+        ./build.sh
+
+    - name: Set date variable
+      run: |
+        echo "BUILD_DATE=$(Get-Date -Format 'yyyy.MM.dd')" >> $env:GITHUB_ENV
+      shell: powershell
+
+    - name: Get latest release upload URL
+      run: |
+        $headers = @{
+            Authorization = "Bearer ${{ secrets.GITHUB_TOKEN }}"
+        }
+        $response = Invoke-RestMethod -Uri "https://api.github.com/repos/${{ github.repository }}/releases/latest" -Headers $headers
+        echo "RELEASE_ID=$($response.id)" >> $env:GITHUB_ENV
+        echo "BUILD_DATE=$(Get-Date -Format 'yyyy.MM.dd')" >> $env:GITHUB_ENV
+      shell: powershell
+
+    - name: Upload Windows Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.RELEASE_ID }}/assets{?name,label}
+        asset_path: build/Output/FFGUI++_Setup.exe
+        asset_name: FFGUI++_Setup_${{ env.BUILD_DATE }}.exe
+        asset_content_type: application/octet-stream
+

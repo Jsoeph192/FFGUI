@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <!-- Application Icons -->
+        <file>resources/icons/logo.ico</file>
+        <file>resources/icons/logo_16x16.png</file>
+        <file>resources/icons/logo_32x32.png</file>
+        <file>resources/icons/logo_48x48.png</file>
+        <file>resources/icons/logo_128x128.png</file>
+        <file>resources/icons/logo_256x256.png</file>
+        
+        
+    </qresource>
+</RCC>

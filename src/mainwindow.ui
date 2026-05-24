@@ -1,0 +1,1975 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1036</width>
+    <height>966</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>FFGUI++</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabSingle">
+       <attribute name="title">
+        <string>Single File</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="groupInputOutput">
+          <property name="title">
+           <string>Input/Output</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Input File:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineInputFile"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="btnBrowseInput">
+             <property name="text">
+              <string>Browse File...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Output File Name:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineOutputFile"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="btnBrowseOutput">
+             <property name="text">
+              <string>Browse File Location</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="overwriteBox">
+          <property name="text">
+           <string>Overwrite?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupEncoding">
+          <property name="title">
+           <string>Encoding Settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelContainer">
+             <property name="text">
+              <string>Output Format:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboContainer"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelHwAccel">
+             <property name="text">
+              <string>Hardware Acceleration:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboHwAccel"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelVideoCodec">
+             <property name="text">
+              <string>Video Codec:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="comboVideoCodec"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="labelAudioCodec">
+             <property name="text">
+              <string>Audio Codec:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="comboAudioCodec"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="labelQuality">
+             <property name="text">
+              <string>Quality Preset:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="comboQuality"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="labelResolution">
+             <property name="text">
+              <string>Resolution:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="comboResolution"/>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="labelFramerate">
+             <property name="text">
+              <string>Framerate:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QComboBox" name="comboFramerate"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QRadioButton" name="radioCRF">
+             <property name="text">
+              <string>Constant Rate Factor (CRF):</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QSpinBox" name="spinCRF">
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>51</number>
+             </property>
+             <property name="value">
+              <number>23</number>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QRadioButton" name="radioBitrate">
+             <property name="text">
+              <string>Bitrate (kbps):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QSpinBox" name="spinBitrate">
+             <property name="minimum">
+              <number>32</number>
+             </property>
+             <property name="maximum">
+              <number>50000</number>
+             </property>
+             <property name="value">
+              <number>2000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="labelAudioBitrate">
+             <property name="text">
+              <string>Audio Bitrate (kbps):</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
+            <widget class="QSpinBox" name="spinAudioBitrate">
+             <property name="minimum">
+              <number>32</number>
+             </property>
+             <property name="maximum">
+              <number>320</number>
+             </property>
+             <property name="singleStep">
+              <number>32</number>
+             </property>
+             <property name="value">
+              <number>128</number>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QCheckBox" name="checkTwoPass">
+             <property name="text">
+              <string>Two-Pass Encoding</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="labelAudioFilters">
+             <property name="text">
+              <string>Audio Filters:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_AudioFilters">
+             <item>
+              <widget class="QCheckBox" name="checkAudioNormalize">
+               <property name="text">
+                <string>Normalize</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkAudioEq">
+               <property name="text">
+                <string>EQ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkAudioCompress">
+               <property name="text">
+                <string>Compress</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkAudioDenoise">
+               <property name="text">
+                <string>Denoise</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="12" column="0" colspan="2">
+            <widget class="QWidget" name="widgetAudioEQ" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_EQ">
+              <item>
+               <widget class="QLabel" name="labelLowFreq">
+                <property name="text">
+                 <string>Low (Hz):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinLowFreq">
+                <property name="minimum">
+                 <number>20</number>
+                </property>
+                <property name="maximum">
+                 <number>200</number>
+                </property>
+                <property name="value">
+                 <number>100</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelLowGain">
+                <property name="text">
+                 <string>Gain (dB):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="spinLowGain">
+                <property name="minimum">
+                 <double>-20.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>20.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.500000000000000</double>
+                </property>
+                <property name="value">
+                 <double>0.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelMidGain">
+                <property name="text">
+                 <string>Mid Gain (dB):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="spinMidGain">
+                <property name="minimum">
+                 <double>-20.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>20.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.500000000000000</double>
+                </property>
+                <property name="value">
+                 <double>0.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelHighFreq">
+                <property name="text">
+                 <string>High (Hz):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinHighFreq">
+                <property name="minimum">
+                 <number>2000</number>
+                </property>
+                <property name="maximum">
+                 <number>20000</number>
+                </property>
+                <property name="value">
+                 <number>8000</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelHighGain">
+                <property name="text">
+                 <string>Gain (dB):</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="spinHighGain">
+                <property name="minimum">
+                 <double>-20.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>20.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.500000000000000</double>
+                </property>
+                <property name="value">
+                 <double>0.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="13" column="0" colspan="2">
+            <widget class="QWidget" name="widgetAudioCompress" native="true">
+             <layout class="QGridLayout" name="gridLayout_Compress">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelThreshold">
+                <property name="text">
+                 <string>Threshold (dB):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QDoubleSpinBox" name="spinThreshold">
+                <property name="minimum">
+                 <double>-60.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>0.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>1.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>-20.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="labelRatio">
+                <property name="text">
+                 <string>Ratio:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QDoubleSpinBox" name="spinRatio">
+                <property name="minimum">
+                 <double>1.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>20.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.500000000000000</double>
+                </property>
+                <property name="value">
+                 <double>4.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="4">
+               <widget class="QLabel" name="labelAttack">
+                <property name="text">
+                 <string>Attack (ms):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QDoubleSpinBox" name="spinAttack">
+                <property name="minimum">
+                 <double>0.100000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>100.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.100000000000000</double>
+                </property>
+                <property name="value">
+                 <double>5.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="6">
+               <widget class="QLabel" name="labelRelease">
+                <property name="text">
+                 <string>Release (ms):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="7">
+               <widget class="QDoubleSpinBox" name="spinRelease">
+                <property name="minimum">
+                 <double>1.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>1000.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>1.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>50.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupPresets">
+          <property name="title">
+           <string>Presets</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QComboBox" name="comboPresets"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnLoadPreset">
+             <property name="text">
+              <string>Load</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSavePreset">
+             <property name="text">
+              <string>Save</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="btnStart">
+            <property name="text">
+             <string>Start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStop">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabBatch">
+       <attribute name="title">
+        <string>Batch Processing</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QTableWidget" name="tableQueue">
+          <column>
+           <property name="text">
+            <string>Input File</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Output File</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Status</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabDVD">
+       <attribute name="title">
+        <string>DVD Tools</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_DVD">
+        <item>
+         <widget class="QTabWidget" name="tabWidgetDVD">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tabDVDRead">
+           <attribute name="title">
+            <string>Read DVD</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_DVDRead">
+            <item>
+             <widget class="QGroupBox" name="groupBoxDVDSource">
+              <property name="title">
+               <string>DVD Source</string>
+              </property>
+              <widget class="QLabel" name="labelDVDDevice">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>70</y>
+                 <width>81</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>DVD Device:</string>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineDVDDevice">
+               <property name="geometry">
+                <rect>
+                 <x>88</x>
+                 <y>66</y>
+                 <width>811</width>
+                 <height>22</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>F:</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btnBrowseDVDDevice">
+               <property name="geometry">
+                <rect>
+                 <x>903</x>
+                 <y>68</y>
+                 <width>80</width>
+                 <height>18</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Browse...</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="labelDVDFolder">
+               <property name="geometry">
+                <rect>
+                 <x>9</x>
+                 <y>134</y>
+                 <width>81</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>ISO Output Folder:</string>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineDVDFolder">
+               <property name="geometry">
+                <rect>
+                 <x>88</x>
+                 <y>134</y>
+                 <width>811</width>
+                 <height>22</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btnBrowseDVDFolder">
+               <property name="geometry">
+                <rect>
+                 <x>903</x>
+                 <y>136</y>
+                 <width>80</width>
+                 <height>18</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Browse...</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBoxDVDReadOptions">
+              <property name="title">
+               <string>Read Options</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_ReadOptions">
+               <item>
+                <widget class="QCheckBox" name="checkDVDReadFull">
+                 <property name="text">
+                  <string>Read Full DVD (All Titles)</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkDVDReadMain">
+                 <property name="text">
+                  <string>Read Main Title Only</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkDVDReadCSS">
+                 <property name="text">
+                  <string>Decrypt CSS Protection</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDVDReadStart">
+              <property name="text">
+               <string>Start Reading DVD</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabDVDWrite">
+           <attribute name="title">
+            <string>Write DVD</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_DVDWrite">
+            <item>
+             <widget class="QGroupBox" name="groupBoxDVDWriteSource">
+              <property name="title">
+               <string>Source Files</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_WriteSource">
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelDVDVideoFiles">
+                 <property name="text">
+                  <string>Video Files:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="lineDVDVideoFiles"/>
+               </item>
+               <item row="0" column="2">
+                <widget class="QPushButton" name="btnBrowseDVDVideoFiles">
+                 <property name="text">
+                  <string>Browse...</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="labelDVDDestination">
+                 <property name="text">
+                  <string>DVD Writer Device:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="lineDVDDestination">
+                 <property name="text">
+                  <string>F:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QPushButton" name="btnBrowseDVDDestination">
+                 <property name="text">
+                  <string>Browse...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBoxDVDWriteOptions">
+              <property name="title">
+               <string>Write Options</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_WriteOptions">
+               <item>
+                <widget class="QCheckBox" name="checkDVDWriteMenu">
+                 <property name="text">
+                  <string>Create DVD Menu</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkDVDWriteVerify">
+                 <property name="text">
+                  <string>Verify After Writing</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelDVDWriteSpeed">
+                 <property name="text">
+                  <string>Write Speed:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboDVDWriteSpeed"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDVDWriteStart">
+              <property name="text">
+               <string>Start Writing DVD</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabDVDCopy">
+           <attribute name="title">
+            <string>Copy DVD</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_DVDCopy">
+            <item>
+             <widget class="QGroupBox" name="groupBox_DVDCopy">
+              <property name="title">
+               <string>Copy DVD Directly</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_DVDCopy">
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelDVDCopySource">
+                 <property name="text">
+                  <string>Source DVD Device:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="lineDVDCopySource">
+                 <property name="text">
+                  <string>F:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QPushButton" name="btnBrowseDVDCopySource">
+                 <property name="text">
+                  <string>Browse...</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="labelDVDCopyDest">
+                 <property name="text">
+                  <string>Destination File:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="lineDVDCopyDest">
+                 <property name="text">
+                  <string>C:\Downloads\output.mkv</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QPushButton" name="btnBrowseDVDCopyDest">
+                 <property name="text">
+                  <string>Browse...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_DVDCopyOptions">
+              <property name="title">
+               <string>Copy Options</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_DVDCopyOptions">
+               <item>
+                <widget class="QCheckBox" name="checkDVDCopyCSS">
+                 <property name="text">
+                  <string>Decrypt and Re-encrypt CSS</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkDVDCopyVerify">
+                 <property name="text">
+                  <string>Verify After Copying</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDVDCopyStart">
+              <property name="text">
+               <string>Start Copying DVD</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabPlayback">
+       <attribute name="title">
+        <string>Playback</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_Playback">
+        <item>
+         <widget class="QGroupBox" name="groupBoxMediaPlayer">
+          <property name="title">
+           <string>Media Player</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_MediaPlayer">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_PlayerControls">
+             <item>
+              <widget class="QPushButton" name="btnPlayFile">
+               <property name="text">
+                <string>Play File</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnPausePlayback">
+               <property name="text">
+                <string>Pause</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnStopPlayback">
+               <property name="text">
+                <string>Stop</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_Position">
+             <item>
+              <widget class="QLabel" name="labelPosition">
+               <property name="text">
+                <string>0:00</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="sliderPosition">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelDuration">
+               <property name="text">
+                <string>0:00</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_Volume">
+             <item>
+              <widget class="QLabel" name="labelVolume">
+               <property name="text">
+                <string>Volume:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="sliderVolume">
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>100</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelVolumeValue">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>100</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabProbe">
+       <attribute name="title">
+        <string>Probe</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_Probe">
+        <item>
+         <widget class="QGroupBox" name="groupBoxProbeInput">
+          <property name="title">
+           <string>Input Files</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_ProbeInput">
+           <item row="0" column="0">
+            <widget class="QLineEdit" name="lineProbeInput">
+             <property name="placeholderText">
+              <string>Select files to probe...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="btnBrowseProbe">
+             <property name="text">
+              <string>Browse Files...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnRunProbe">
+          <property name="text">
+           <string>Run FFprobe</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxProbeOutput">
+          <property name="title">
+           <string>FFprobe Output</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_ProbeOutput">
+           <item>
+            <widget class="QTextEdit" name="textProbeOutput">
+             <property name="font">
+              <font>
+               <family>Courier New</family>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_ProbeButtons">
+             <item>
+              <widget class="QPushButton" name="btnCopyProbeOutput">
+               <property name="text">
+                <string>Copy Output</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnClearProbeOutput">
+               <property name="text">
+                <string>Clear</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_Probe">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabImage">
+       <attribute name="title">
+        <string>Image Tools</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_Image">
+        <item>
+         <widget class="QGroupBox" name="groupBoxImageInput">
+          <property name="title">
+           <string>Input/Output</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_ImageIO">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelImageInput">
+             <property name="text">
+              <string>Input Image:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineImageInput"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="btnBrowseImageInput">
+             <property name="text">
+              <string>Browse...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelImageOutput">
+             <property name="text">
+              <string>Output File:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineImageOutput"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="btnBrowseImageOutput">
+             <property name="text">
+              <string>Browse...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxImageFormat">
+          <property name="title">
+           <string>Format Conversion</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_ImageFormat">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelOutputFormat">
+             <property name="text">
+              <string>Output Format:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboImageFormat"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QCheckBox" name="checkPreserveMetadata">
+             <property name="text">
+              <string>Preserve Metadata</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxImageResize">
+          <property name="title">
+           <string>Resize</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_ImageResize">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelWidth">
+             <property name="text">
+              <string>Width:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="spinWidth">
+             <property name="maximum">
+              <number>10000</number>
+             </property>
+             <property name="singleStep">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelHeight">
+             <property name="text">
+              <string>Height:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QSpinBox" name="spinHeight">
+             <property name="maximum">
+              <number>10000</number>
+             </property>
+             <property name="singleStep">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QCheckBox" name="checkKeepAspect">
+             <property name="text">
+              <string>Keep Aspect Ratio</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelResizeMethod">
+             <property name="text">
+              <string>Method:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="3">
+            <widget class="QComboBox" name="comboResizeMethod"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxImageFilters">
+          <property name="title">
+           <string>Filters</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_ImageFilters">
+           <item>
+            <layout class="QGridLayout" name="gridLayout_FilterChecks">
+             <item row="0" column="0">
+              <widget class="QCheckBox" name="checkGrayscale">
+               <property name="text">
+                <string>Grayscale</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkSepia">
+               <property name="text">
+                <string>Sepia</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QCheckBox" name="checkNegative">
+               <property name="text">
+                <string>Negative</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="checkBlur">
+               <property name="text">
+                <string>Blur</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QCheckBox" name="checkSharpen">
+               <property name="text">
+                <string>Sharpen</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QCheckBox" name="checkEdgeDetect">
+               <property name="text">
+                <string>Edge Detection</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkVignette">
+               <property name="text">
+                <string>Vignette</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckBox" name="checkProgressive">
+               <property name="text">
+                <string>Progressive</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBoxBrightnessContrast">
+             <property name="title">
+              <string>Brightness &amp;&amp; Contrast</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_BrightnessContrast">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelBrightness">
+                <property name="text">
+                 <string>Brightness:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSlider" name="sliderBrightness">
+                <property name="minimum">
+                 <number>-100</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="labelBrightnessValue">
+                <property name="minimumSize">
+                 <size>
+                  <width>30</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelContrast">
+                <property name="text">
+                 <string>Contrast:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSlider" name="sliderContrast">
+                <property name="minimum">
+                 <number>-100</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="labelContrastValue">
+                <property name="minimumSize">
+                 <size>
+                  <width>30</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxImageQuality">
+          <property name="title">
+           <string>Quality Settings</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_Quality">
+           <item>
+            <widget class="QLabel" name="labelQualityText">
+             <property name="text">
+              <string>Quality:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="sliderImageQuality">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>90</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelQualityNumber">
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>90</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_ImageButtons">
+          <item>
+           <widget class="QPushButton" name="btnImagePreview">
+            <property name="text">
+             <string>Preview</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnImageStart">
+            <property name="text">
+             <string>Start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnImageStop">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabYtdlp">
+       <attribute name="title">
+        <string>YouTube Downloader</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_Ytdlp">
+        <item>
+         <widget class="QGroupBox" name="groupBoxYtdlpInput">
+          <property name="title">
+           <string>Download YouTube Video</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_YtdlpInput">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelYtdlpUrl">
+             <property name="text">
+              <string>YouTube URL:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QLineEdit" name="lineYtdlpUrl">
+             <property name="placeholderText">
+              <string>https://www.youtube.com/watch?v=...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelYtdlpOutput">
+             <property name="text">
+              <string>Output Path:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineYtdlpOutput"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="btnBrowseYtdlpOutput">
+             <property name="text">
+              <string>Browse...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelYtdlpQuality">
+             <property name="text">
+              <string>Quality:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="comboYtdlpQuality"/>
+           </item>
+           <item row="3" column="0" colspan="3">
+            <widget class="QCheckBox" name="checkYtdlpAudioOnly">
+             <property name="text">
+              <string>Audio Only (MP3)</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_YtdlpButtons">
+          <item>
+           <widget class="QPushButton" name="btnDownloadYtdlp">
+            <property name="text">
+             <string>Download</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStopYtdlp">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_Ytdlp">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxYtdlpProgress">
+          <property name="title">
+           <string>Download Progress</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_YtdlpProgress">
+           <item>
+            <widget class="QProgressBar" name="progressYtdlp">
+             <property name="visible">
+              <bool>false</bool>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="textYtdlpOutput">
+             <property name="font">
+              <font>
+               <family>Courier New</family>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabWhisper">
+       <attribute name="title">
+        <string>Whisper Transcription</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_Whisper">
+        <item>
+         <widget class="QGroupBox" name="groupBoxWhisperInput">
+          <property name="title">
+           <string>Transcription Settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_WhisperInput">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelWhisperInput">
+             <property name="text">
+              <string>Input Audio/Video File:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineWhisperInput"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="btnBrowseWhisperInput">
+             <property name="text">
+              <string>Browse...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelWhisperOutput">
+             <property name="text">
+              <string>Output Text File:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineWhisperOutput"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="btnBrowseWhisperOutput">
+             <property name="text">
+              <string>Browse...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelWhisperModel">
+             <property name="text">
+              <string>Model:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="comboWhisperModel"/>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QCheckBox" name="checkWhisperTranslate">
+             <property name="text">
+              <string>Translate to English</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelWhisperInstructions">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://huggingface.co/codester2835/ffgui-models/tree/main&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Download Recommended Models&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;1. Download recommended model files and place them in the 'models' folder of your installation&lt;br/&gt;3. You may beed to restart the application to enable Whisper features&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_WhisperButtons">
+          <item>
+           <widget class="QPushButton" name="btnRunWhisper">
+            <property name="text">
+             <string>Transcribe</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStopWhisper">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_Whisper">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxWhisperProgress">
+          <property name="title">
+           <string>Transcription Progress</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_WhisperProgress">
+           <item>
+            <widget class="QProgressBar" name="progressWhisper">
+             <property name="visible">
+              <bool>false</bool>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="textWhisperOutput">
+             <property name="font">
+              <font>
+               <family>Courier New</family>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabCustom">
+       <attribute name="title">
+        <string>Custom</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_Custom">
+        <item>
+         <widget class="QGroupBox" name="groupBoxCustomInput">
+          <property name="title">
+           <string>Custom FFmpeg Command</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_CustomInput">
+           <item>
+            <widget class="QLabel" name="labelCustomCommand">
+             <property name="text">
+              <string>Enter FFmpeg command (excluding 'ffmpeg'):</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineCustomWorkingDir">
+             <property name="placeholderText">
+              <string>Working directory (leave empty for default)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="textCustomCommand">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="placeholderText">
+              <string>Enter FFmpeg arguments here (e.g., -i input.mp4 -c:v libx264 output.mp4)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_CustomButtons">
+             <item>
+              <widget class="QPushButton" name="btnRunCustomCommand">
+               <property name="text">
+                <string>Run Command</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnStopCustomCommand">
+               <property name="text">
+                <string>Stop</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnClearCustomOutput">
+               <property name="text">
+                <string>Clear Output</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_Custom">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxCustomOutput">
+          <property name="title">
+           <string>Command Output</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_CustomOutput">
+           <item>
+            <widget class="QTextEdit" name="textCustomOutput">
+             <property name="font">
+              <font>
+               <family>Courier New</family>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="textLog">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="detailsPanel" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>200</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutDetails">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="labelDetails">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Command and Detailed Logs:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="textDetailedLog">
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+          </font>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayoutDetails">
+      <item>
+       <widget class="QPushButton" name="btnShowDetails">
+        <property name="text">
+         <string>Show Details</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnCopyCommand">
+        <property name="text">
+         <string>Copy Command</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1036</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>Save As</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
