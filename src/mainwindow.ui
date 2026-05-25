@@ -1645,7 +1645,7 @@
         <item>
          <widget class="QLabel" name="labelWhisperInstructions">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://huggingface.co/codester2835/ffgui-models/tree/main&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Download Recommended Models&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;1. Download recommended model files and place them in the 'models' folder of your installation&lt;br/&gt;3. You may beed to restart the application to enable Whisper features&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://huggingface.co/codester2835/ffgui-models/tree/main&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Download Recommended Models&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;1. Download recommended model files and place them in the 'models' folder of your installation&lt;br/&gt;2. You may beed to restart the application to enable Whisper features&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
