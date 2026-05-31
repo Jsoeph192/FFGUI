@@ -136,6 +136,7 @@ private:
     bool m_audioCompressEnabled;
     bool m_audioDenoiseEnabled;
 
+    QStringList splitCommand(const QString& command);
 
     QProcess* m_ytdlpProcess;
     QString m_ytdlpPath;

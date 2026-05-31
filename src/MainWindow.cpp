@@ -126,6 +126,12 @@ void MainWindow::setupUI()
     ui->btnShowDetails->setCheckable(true);
     ui->btnShowDetails->setChecked(false);
     
+    ui->comboCustomDropdown->addItem("ffmpeg");
+    ui->comboCustomDropdown->addItem("ffprobe");
+    ui->comboCustomDropdown->addItem("ffplay");
+    ui->comboCustomDropdown->addItem("yt-dlp");
+    ui->comboCustomDropdown->setCurrentIndex(0);
+    
     enableControls(true);
     setupAudioFilterControls();
     setupImageTools();
@@ -630,21 +636,40 @@ void MainWindow::on_btnRunCustomCommand_clicked()
         return;
     }
     
+    QString selectedTool = ui->comboCustomDropdown->currentText();
+    QString commandPrefix = ui->comboCustomDropdown->currentData().toString();
+    
     QString workingDir = ui->lineCustomWorkingDir->text().trimmed();
     
     ui->textCustomOutput->append(QString("[%1] Running custom command...").arg(QTime::currentTime().toString()));
-    ui->textCustomOutput->append(QString("Command: ffmpeg %1").arg(command));
+    
+    QString fullCommand = command;
+    
+    if (!commandPrefix.isEmpty() && !selectedTool.isEmpty() && selectedTool != "Custom Command") {
+        ui->textCustomOutput->append(QString("Tool: %1").arg(selectedTool));
+        fullCommand = commandPrefix + " " + command;
+    } else {
+        ui->textCustomOutput->append(QString("Custom command mode"));
+    }
+    
+    ui->textCustomOutput->append(QString("Command: %1").arg(fullCommand));
     if (!workingDir.isEmpty()) {
         ui->textCustomOutput->append(QString("Working Directory: %1").arg(workingDir));
     }
     ui->textCustomOutput->append("-------------------");
     
-    runCustomCommand(command, workingDir);
+    runCustomCommand(fullCommand, workingDir);
 }
+
 
 void MainWindow::runCustomCommand(const QString& command, const QString& workingDir)
 {
-    QStringList args = command.split(" ", Qt::SkipEmptyParts);
+    QStringList args = splitCommand(command);
+    
+    QString program;
+    if (!args.isEmpty()) {
+        program = args.takeFirst();
+    }
     
     if (!workingDir.isEmpty()) {
         m_customProcess->setWorkingDirectory(workingDir);
@@ -655,13 +680,49 @@ void MainWindow::runCustomCommand(const QString& command, const QString& working
     ui->btnRunCustomCommand->setEnabled(false);
     ui->btnStopCustomCommand->setEnabled(true);
     
-    m_customProcess->start("ffmpeg", args);
+    m_customProcess->start(program, args);
     
     if (!m_customProcess->waitForStarted(5000)) {
-        ui->textCustomOutput->append(QString("Failed to start FFmpeg: %1").arg(m_customProcess->errorString()));
+        ui->textCustomOutput->append(QString("Failed to start: %1").arg(m_customProcess->errorString()));
         ui->btnRunCustomCommand->setEnabled(true);
         ui->btnStopCustomCommand->setEnabled(false);
     }
+}
+
+QStringList MainWindow::splitCommand(const QString& command)
+{
+    QStringList args;
+    QString currentArg;
+    bool inQuotes = false;
+    QChar quoteChar;
+    
+    for (int i = 0; i < command.length(); ++i) {
+        QChar c = command[i];
+        
+        if (c == '"' || c == '\'') {
+            if (!inQuotes) {
+                inQuotes = true;
+                quoteChar = c;
+            } else if (quoteChar == c) {
+                inQuotes = false;
+            } else {
+                currentArg += c;
+            }
+        } else if (c == ' ' && !inQuotes) {
+            if (!currentArg.isEmpty()) {
+                args << currentArg;
+                currentArg.clear();
+            }
+        } else {
+            currentArg += c;
+        }
+    }
+    
+    if (!currentArg.isEmpty()) {
+        args << currentArg;
+    }
+    
+    return args;
 }
 
 void MainWindow::on_btnStopCustomCommand_clicked()
@@ -691,6 +752,7 @@ void MainWindow::onCustomOutputReady()
         ui->textCustomOutput->append(outputStr.trimmed());
     }
 }
+
 
 void MainWindow::checkAndDownloadYTDLPIfNeeded()
 {

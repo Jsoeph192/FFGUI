@@ -1727,15 +1727,20 @@
         <item>
          <widget class="QGroupBox" name="groupBoxCustomInput">
           <property name="title">
-           <string>Custom FFmpeg Command</string>
+           <string>Custom Command</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_CustomInput">
            <item>
             <widget class="QLabel" name="labelCustomCommand">
              <property name="text">
-              <string>Enter FFmpeg command (excluding 'ffmpeg'):</string>
+              <string>Enter command (including tool):</string>
              </property>
             </widget>
+           </item>
+           <item>
+             <widget class="QComboBox" name="comboCustomDropdown">
+               <!-- You can add items here later -->
+             </widget>
            </item>
            <item>
             <widget class="QLineEdit" name="lineCustomWorkingDir">
@@ -1753,7 +1758,7 @@
               </size>
              </property>
              <property name="placeholderText">
-              <string>Enter FFmpeg arguments here (e.g., -i input.mp4 -c:v libx264 output.mp4)</string>
+              <string>Enter command here (e.g., ffmpeg -i input.mp4 -c:v libx264 output.mp4)</string>
              </property>
             </widget>
            </item>
