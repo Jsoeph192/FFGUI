@@ -1882,7 +1882,7 @@ void MainWindow::on_btnDVDCopyStart_clicked()
         return;
     }
     
-    if (!source.contains(":") || source.length() > 3) {
+    if (!source.contains(":") || source.length() > 99) {
         QMessageBox::warning(this, tr("Warning"), tr("Please specify a valid drive letter (e.g., F:)"));
         return;
     }
