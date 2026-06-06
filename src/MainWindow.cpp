@@ -1882,10 +1882,17 @@ void MainWindow::on_btnDVDCopyStart_clicked()
         return;
     }
     
-    if (!source.contains(":") || source.length() > 99) {
+#ifdef Q_OS_WIN
+    if (!source.contains(":") || source.length() > 3) {
         QMessageBox::warning(this, tr("Warning"), tr("Please specify a valid drive letter (e.g., F:)"));
         return;
     }
+#else
+    if (!source.startsWith("/") || source.length() < 2) {
+        QMessageBox::warning(this, tr("Warning"), tr("Please specify a valid source path (e.g., /mnt/dvd)"));
+        return;
+    }
+#endif
     
     QFileInfo destInfo(dest);
     QDir destDir = destInfo.dir();
@@ -1909,14 +1916,13 @@ void MainWindow::on_btnDVDCopyStart_clicked()
     addToLog(QString("[%1] Starting DVD copy...").arg(QTime::currentTime().toString()));
     
     QStringList args;
-    args << "ffmpeg";
     args << "-f" << "dvdvideo";
     args << "-i" << source;
     args << "-c" << "copy";
     args << dest;
     args << "-y";
     
-    QString command = args.join(" ");
+    QString command = "ffmpeg " + args.join(" ");
     m_lastCommand = command;
     
     ui->textDetailedLog->append("=== DVD Copy Command ===");
@@ -1925,6 +1931,7 @@ void MainWindow::on_btnDVDCopyStart_clicked()
     
     m_ffmpegProcessor->start(command);
 }
+
 
 void MainWindow::on_btnBrowseDVDCopyDest_clicked()
 {
