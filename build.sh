@@ -8,12 +8,12 @@ if ! pacman -Qi cmake >/dev/null 2>&1; then
 fi
 
 echo "Downloading large binaries"
-curl -L -o bin/ffmpeg.exe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries/ffmpeg.exe"
-curl -L -o bin/ffplay.exe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries/ffplay.exe"
-curl -L -o bin/ffprobe.exe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries/ffprobe.exe"
-curl -L -o bin/ffmpeg "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries/ffmpeg"
-curl -L -o bin/ffplay "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries/ffplay"
-curl -L -o bin/ffprobe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries/ffprobe"
+curl -L -o bin/ffmpeg.exe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries-v2026.06.06/ffmpeg.exe"
+curl -L -o bin/ffplay.exe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries-v2026.06.06/ffplay.exe"
+curl -L -o bin/ffprobe.exe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries-v2026.06.06/ffprobe.exe"
+curl -L -o bin/ffmpeg "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries-v2026.06.06/ffmpeg"
+curl -L -o bin/ffplay "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries-v2026.06.06/ffplay"
+curl -L -o bin/ffprobe "https://github.com/Jsoeph192/FFGUI/releases/download/Binaries-v2026.06.06/ffprobe"
 
 echo "Changing to build directory..."
 mkdir build
