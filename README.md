@@ -73,6 +73,10 @@ chmod +x linux-build.sh
 
 FFGUI++ is licensed under the MIT License. *See [Licence](https://github.com/Jsoeph192/FFGUI/blob/main/LICENSE).*
 
+## Updates
+
+I will update it when I feel like it. There will be semi-regular releases of binaries with various updates
+
 ## Miscellaneous
 
 Please be sure to report any issues immediately. If you like this project, feel free to give it a star ⭐.
